@@ -1,45 +1,72 @@
-import type {
-  Product, Category, Order, OrderStatus, AnalyticsSummary,
-} from "./types";
+import type { Product, Category, Order, OrderStatus, AnalyticsSummary } from "./types";
+import { DUMMY_CATEGORIES, DUMMY_PRODUCTS, DUMMY_ORDERS, DUMMY_ANALYTICS } from "./dummy";
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
-
-async function req<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { "Content-Type": "application/json" },
-    cache: "no-store",
-    ...init,
-  });
-  if (!res.ok) {
-    const detail = await res.text();
-    throw new Error(`API ${res.status}: ${detail}`);
-  }
-  return res.json() as Promise<T>;
-}
+const pause = () => new Promise<void>((r) => setTimeout(r, 250));
 
 export const api = {
-  categories: () => req<Category[]>("/products/categories"),
-  products: (category?: string, search?: string) => {
-    const q = new URLSearchParams();
-    if (category) q.set("category", category);
-    if (search) q.set("search", search);
-    return req<Product[]>(`/products?${q.toString()}`);
+  categories: async (): Promise<Category[]> => {
+    await pause();
+    return DUMMY_CATEGORIES;
   },
-  product: (slug: string) => req<Product>(`/products/${slug}`),
-  orders: (status?: OrderStatus) =>
-    req<Order[]>(`/orders${status ? `?status=${status}` : ""}`),
-  order: (reference: string) => req<Order>(`/orders/${reference}`),
-  createOrder: (body: unknown) =>
-    req<Order>("/orders", { method: "POST", body: JSON.stringify(body) }),
-  updateStatus: (reference: string, status: OrderStatus) =>
-    req<Order>(`/orders/${reference}/status`, {
-      method: "PATCH",
-      body: JSON.stringify({ status }),
-    }),
-  validatePromo: (code: string, subtotal: number) =>
-    req<{ valid: boolean; discount: number; message: string }>(
-      "/promotions/validate",
-      { method: "POST", body: JSON.stringify({ code, subtotal }) }
-    ),
-  analytics: () => req<AnalyticsSummary>("/analytics/summary"),
+
+  products: async (category?: string, search?: string): Promise<Product[]> => {
+    await pause();
+    return DUMMY_PRODUCTS.filter((p) => {
+      const catMatch = !category || p.category_id === category;
+      const searchMatch =
+        !search || p.name_en.toLowerCase().includes(search.toLowerCase());
+      return catMatch && searchMatch && p.is_active;
+    });
+  },
+
+  product: async (slug: string): Promise<Product> => {
+    await pause();
+    const p = DUMMY_PRODUCTS.find((p) => p.slug === slug);
+    if (!p) throw new Error("Product not found");
+    return p;
+  },
+
+  orders: async (status?: OrderStatus): Promise<Order[]> => {
+    await pause();
+    return status
+      ? DUMMY_ORDERS.filter((o) => o.status === status)
+      : DUMMY_ORDERS;
+  },
+
+  order: async (reference: string): Promise<Order> => {
+    await pause();
+    return DUMMY_ORDERS.find((o) => o.reference === reference) ?? DUMMY_ORDERS[0];
+  },
+
+  createOrder: async (_body: unknown): Promise<Order> => {
+    await new Promise<void>((r) => setTimeout(r, 800));
+    return { ...DUMMY_ORDERS[0], reference: "FHB-2040" };
+  },
+
+  updateStatus: async (reference: string, status: OrderStatus): Promise<Order> => {
+    await pause();
+    return {
+      ...(DUMMY_ORDERS.find((o) => o.reference === reference) ?? DUMMY_ORDERS[0]),
+      status,
+    };
+  },
+
+  validatePromo: async (
+    code: string,
+    subtotal: number
+  ): Promise<{ valid: boolean; discount: number; message: string }> => {
+    await pause();
+    if (code.trim().toUpperCase() === "FIRST10")
+      return {
+        valid: true,
+        discount: Math.round(subtotal * 0.1),
+        message: "10% discount applied!",
+      };
+    return { valid: false, discount: 0, message: "Invalid promo code" };
+  },
+
+  analytics: async (): Promise<AnalyticsSummary> => {
+    await pause();
+    return DUMMY_ANALYTICS;
+  },
 };

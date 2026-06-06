@@ -1,4 +1,4 @@
-import type { Product, Category } from "./types";
+import type { Product, Category, Order, AnalyticsSummary } from "./types";
 
 export const DUMMY_CATEGORIES: Category[] = [
   { id: "cakes",    name: "Celebration Cakes",   emoji: "🎂" },
@@ -150,3 +150,82 @@ export const DUMMY_PRODUCTS: Product[] = [
     ],
   },
 ];
+
+export const DUMMY_ORDERS: Order[] = [
+  {
+    id: 1, reference: "FHB-2037",
+    customer_name: "Ayesha Malik", customer_phone: "+92 300 111 2233",
+    status: "PREPARING",
+    subtotal: 3800, delivery_fee: 200, discount_amount: 380, total: 3620,
+    payment_method: "Easypaisa", payment_status: "PAID",
+    delivery_type: "delivery", delivery_zone: "Bahria Town",
+    delivery_address: "House 14, Block C, Bahria Town, Rawalpindi",
+    delivery_date: "2026-06-08", delivery_slot: "2 PM – 5 PM",
+    special_notes: "Please write 'Happy Birthday Mama' on the cake.",
+    created_at: "2026-06-06T10:22:00Z",
+    items: [
+      { id: 1, product_id: 1, name: "Strawberry Dream Cake", emoji: "🎂", size: '6" Round', flavour: "Strawberry", message: "Happy Birthday Mama", quantity: 1, unit_price: 2800 },
+      { id: 2, product_id: 3, name: "Salted Caramel Cupcakes", emoji: "🧁", size: "Box of 6", flavour: "Salted Caramel", message: "", quantity: 1, unit_price: 1000 },
+    ],
+  },
+  {
+    id: 2, reference: "FHB-2038",
+    customer_name: "Usman Tariq", customer_phone: "+92 321 987 6543",
+    status: "CONFIRMED",
+    subtotal: 2200, delivery_fee: 0, discount_amount: 0, total: 2200,
+    payment_method: "Cash on Delivery", payment_status: "PENDING",
+    delivery_type: "pickup", delivery_zone: "",
+    delivery_address: "",
+    delivery_date: "2026-06-07", delivery_slot: "12 PM – 2 PM",
+    special_notes: "",
+    created_at: "2026-06-05T18:05:00Z",
+    items: [
+      { id: 3, product_id: 7, name: "Fudgy Walnut Brownies", emoji: "🍫", size: "Tray of 9", flavour: "Classic Fudge", message: "", quantity: 1, unit_price: 1350 },
+      { id: 4, product_id: 10, name: "Double Choc Chip Cookies", emoji: "🍪", size: "Box of 12", flavour: "Double Chocolate", message: "", quantity: 1, unit_price: 1200 },
+    ],
+  },
+  {
+    id: 3, reference: "FHB-2039",
+    customer_name: "Sana Rehman", customer_phone: "+92 345 000 1122",
+    status: "DELIVERED",
+    subtotal: 5000, delivery_fee: 200, discount_amount: 500, total: 4700,
+    payment_method: "Bank Transfer", payment_status: "PAID",
+    delivery_type: "delivery", delivery_zone: "Islamabad",
+    delivery_address: "Flat 3B, F-7/2, Islamabad",
+    delivery_date: "2026-06-04", delivery_slot: "5 PM – 8 PM",
+    special_notes: "Anniversary order — be careful with the cake box.",
+    created_at: "2026-06-03T14:40:00Z",
+    items: [
+      { id: 5, product_id: 2, name: "Belgian Choc Truffle", emoji: "🎂", size: '8" Round', flavour: "Dark Chocolate Ganache", message: "Happy Anniversary", quantity: 1, unit_price: 3800 },
+      { id: 6, product_id: 4, name: "Red Velvet Cupcakes", emoji: "🧁", size: "Box of 12", flavour: "Red Velvet", message: "", quantity: 1, unit_price: 1800 },
+    ],
+  },
+];
+
+export const DUMMY_ANALYTICS: AnalyticsSummary = {
+  total_revenue: 184500,
+  total_orders: 47,
+  average_order_value: 3926,
+  pending_orders: 8,
+  revenue_by_day: [
+    { day: "Mon", revenue: 18200 },
+    { day: "Tue", revenue: 24500 },
+    { day: "Wed", revenue: 19800 },
+    { day: "Thu", revenue: 32100 },
+    { day: "Fri", revenue: 41000 },
+    { day: "Sat", revenue: 48900 },
+  ],
+  top_products: [
+    { name: "Strawberry Dream", value: 32 },
+    { name: "Belgian Choc Truffle", value: 28 },
+    { name: "Red Velvet Cupcakes", value: 21 },
+    { name: "Fudgy Brownies", value: 18 },
+    { name: "Eid Dry Fruit Cake", value: 14 },
+  ],
+  payment_mix: [
+    { name: "Easypaisa", value: 42 },
+    { name: "Cash on Delivery", value: 31 },
+    { name: "Bank Transfer", value: 19 },
+    { name: "JazzCash", value: 8 },
+  ],
+};
