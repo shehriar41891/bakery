@@ -1,0 +1,152 @@
+import type { Product, Category } from "./types";
+
+export const DUMMY_CATEGORIES: Category[] = [
+  { id: "cakes",    name: "Celebration Cakes",   emoji: "🎂" },
+  { id: "cupcakes", name: "Cupcakes",             emoji: "🧁" },
+  { id: "pastries", name: "Pastries & Desserts",  emoji: "🥐" },
+  { id: "brownies", name: "Brownies & Bars",      emoji: "🍫" },
+  { id: "cookies",  name: "Cookies",              emoji: "🍪" },
+  { id: "seasonal", name: "Eid Specials",         emoji: "🌙" },
+];
+
+export const DUMMY_PRODUCTS: Product[] = [
+  {
+    id: 1, slug: "classic-birthday-cake",
+    name_en: "Classic Birthday Cake", name_ur: "کلاسک برتھ ڈے کیک",
+    description: "A timeless layered cake with fluffy vanilla sponge, silky buttercream, and your personalised message piped with love. Serves 10–16.",
+    category_id: "cakes", base_price: 2800, image_url: "",
+    prep_time_hours: 72, allow_custom_message: true, is_eggless_available: true, is_active: true,
+    badge: "Bestseller",
+    variants: [
+      { id: 1, size: '6" Round', flavour: "Vanilla", frosting: "Buttercream", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 2, size: '8" Round', flavour: "Chocolate", frosting: "Ganache", price_adjustment: 1200, stock_status: "in_stock" },
+      { id: 3, size: '10" Round', flavour: "Red Velvet", frosting: "Cream Cheese", price_adjustment: 2600, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 2, slug: "chocolate-fudge-drip",
+    name_en: "Chocolate Fudge Drip", name_ur: "چاکلیٹ فج ڈرپ",
+    description: "Decadent dark chocolate layers soaked in fudge syrup, finished with a glossy drip and chocolate shards. A showstopper.",
+    category_id: "cakes", base_price: 3400, image_url: "",
+    prep_time_hours: 72, allow_custom_message: true, is_eggless_available: false, is_active: true,
+    badge: "Pre-order",
+    variants: [
+      { id: 4, size: '8" Round', flavour: "Dark Chocolate", frosting: "Ganache Drip", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 5, size: '10" Round', flavour: "Dark Chocolate", frosting: "Ganache Drip", price_adjustment: 1800, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 3, slug: "strawberry-dream-cake",
+    name_en: "Strawberry Dream Cake", name_ur: "اسٹرابیری ڈریم کیک",
+    description: "Light chiffon layers with fresh strawberry compote and whipped cream — airy, delicate, and absolutely dreamy.",
+    category_id: "cakes", base_price: 3100, image_url: "",
+    prep_time_hours: 48, allow_custom_message: true, is_eggless_available: false, is_active: true,
+    badge: "New",
+    variants: [
+      { id: 20, size: '6" Round', flavour: "Strawberry", frosting: "Whipped Cream", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 21, size: '8" Round', flavour: "Strawberry", frosting: "Whipped Cream", price_adjustment: 1400, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 4, slug: "red-velvet-cupcakes",
+    name_en: "Red Velvet Cupcakes", name_ur: "ریڈ ویلویٹ کپ کیک",
+    description: "Gorgeous crimson cupcakes with tangy cream-cheese frosting and a velvet crumb swirl on top. Box of 6 or 12.",
+    category_id: "cupcakes", base_price: 1200, image_url: "",
+    prep_time_hours: 24, allow_custom_message: false, is_eggless_available: true, is_active: true,
+    badge: "",
+    variants: [
+      { id: 6, size: "Box of 6", flavour: "Red Velvet", frosting: "Cream Cheese", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 7, size: "Box of 12", flavour: "Red Velvet", frosting: "Cream Cheese", price_adjustment: 1000, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 5, slug: "lemon-blueberry-cupcakes",
+    name_en: "Lemon Blueberry Cupcakes", name_ur: "لیموں بلوبیری کپ کیک",
+    description: "Zesty lemon sponge studded with fresh blueberries, crowned with lemon buttercream swirls. Bright and refreshing.",
+    category_id: "cupcakes", base_price: 1350, image_url: "",
+    prep_time_hours: 24, allow_custom_message: false, is_eggless_available: true, is_active: true,
+    badge: "Bestseller",
+    variants: [
+      { id: 8, size: "Box of 6", flavour: "Lemon & Blueberry", frosting: "Lemon Buttercream", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 9, size: "Box of 12", flavour: "Lemon & Blueberry", frosting: "Lemon Buttercream", price_adjustment: 1100, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 6, slug: "almond-croissant",
+    name_en: "Almond Croissant", name_ur: "بادام کرواساں",
+    description: "Golden, flaky layers brushed with almond cream, baked till crisp and dusted with toasted flakes. Best with morning chai.",
+    category_id: "pastries", base_price: 450, image_url: "",
+    prep_time_hours: 12, allow_custom_message: false, is_eggless_available: false, is_active: true,
+    badge: "",
+    variants: [],
+  },
+  {
+    id: 7, slug: "pistachio-danish",
+    name_en: "Pistachio Danish", name_ur: "پستہ ڈینش",
+    description: "Buttery laminated pastry swirled with pistachio frangipane and a honey drizzle. A weekend favourite.",
+    category_id: "pastries", base_price: 520, image_url: "",
+    prep_time_hours: 12, allow_custom_message: false, is_eggless_available: false, is_active: true,
+    badge: "Bestseller",
+    variants: [],
+  },
+  {
+    id: 8, slug: "fudgy-walnut-brownie",
+    name_en: "Fudgy Walnut Brownie", name_ur: "فج اخروٹ براؤنی",
+    description: "Extra-dense brownies packed with walnuts and Belgian dark chocolate — crisp top, molten interior. Absolutely irresistible.",
+    category_id: "brownies", base_price: 950, image_url: "",
+    prep_time_hours: 12, allow_custom_message: false, is_eggless_available: true, is_active: true,
+    badge: "Bestseller",
+    variants: [
+      { id: 10, size: "Box of 4", flavour: "Walnut Fudge", frosting: "None", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 11, size: "Box of 9", flavour: "Walnut Fudge", frosting: "None", price_adjustment: 950, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 9, slug: "salted-caramel-blondie",
+    name_en: "Salted Caramel Blondie", name_ur: "نمکین کیرامل بلونڈی",
+    description: "Buttery blonde bars swirled with homemade salted caramel — chewy, rich and utterly addictive.",
+    category_id: "brownies", base_price: 900, image_url: "",
+    prep_time_hours: 12, allow_custom_message: false, is_eggless_available: false, is_active: true,
+    badge: "",
+    variants: [
+      { id: 12, size: "Box of 4", flavour: "Salted Caramel", frosting: "None", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 13, size: "Box of 9", flavour: "Salted Caramel", frosting: "None", price_adjustment: 900, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 10, slug: "double-choc-chip-cookies",
+    name_en: "Double Choc Chip Cookies", name_ur: "ڈبل چاکلیٹ کوکیز",
+    description: "Thick, bakery-style cookies loaded with dark and white chocolate chips, slightly underbaked for gooey centres.",
+    category_id: "cookies", base_price: 650, image_url: "",
+    prep_time_hours: 6, allow_custom_message: false, is_eggless_available: true, is_active: true,
+    badge: "",
+    variants: [
+      { id: 14, size: "Box of 6", flavour: "Double Chocolate", frosting: "None", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 15, size: "Box of 12", flavour: "Double Chocolate", frosting: "None", price_adjustment: 550, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 11, slug: "eid-dry-fruit-cake",
+    name_en: "Eid Dry Fruit Cake", name_ur: "عید ڈرائی فروٹ کیک",
+    description: "A festive showpiece studded with almonds, pistachios, saffron, and cardamom — the heart of any Eid gathering.",
+    category_id: "seasonal", base_price: 3200, image_url: "",
+    prep_time_hours: 72, allow_custom_message: true, is_eggless_available: true, is_active: true,
+    badge: "Eid Special",
+    variants: [
+      { id: 16, size: '8" Classic', flavour: "Cardamom Spice", frosting: "Marzipan", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 17, size: '10" Deluxe', flavour: "Saffron & Cardamom", frosting: "Royal Icing", price_adjustment: 1800, stock_status: "in_stock" },
+    ],
+  },
+  {
+    id: 12, slug: "eid-mithai-box",
+    name_en: "Eid Mithai Box", name_ur: "عید مٹھائی باکس",
+    description: "A luxurious assortment of rose barfi, pistachio laddu, and cardamom shortbreads in our signature gift box.",
+    category_id: "seasonal", base_price: 2200, image_url: "",
+    prep_time_hours: 48, allow_custom_message: false, is_eggless_available: true, is_active: true,
+    badge: "Eid Special",
+    variants: [
+      { id: 18, size: "12-piece", flavour: "Mixed", frosting: "None", price_adjustment: 0, stock_status: "in_stock" },
+      { id: 19, size: "24-piece", flavour: "Mixed", frosting: "None", price_adjustment: 1600, stock_status: "in_stock" },
+    ],
+  },
+];

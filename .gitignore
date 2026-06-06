@@ -1,0 +1,25 @@
+﻿# Dependencies
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/.env*.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+backend/__pycache__/
+
+# Environment
+.env
+.env.local
+
+# Docker volumes
+pgdata/
+
+# OS
+.DS_Store
+Thumbs.db
